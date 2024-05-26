@@ -73,7 +73,7 @@ public class ClientGUI extends JFrame {
     public void message() {
         if (connected) {
             String text = tfMessage.getText();
-            if (!text.equals("")) {
+            if (!text.isEmpty()) {
                 server.date();
                 server.message(name + ": " + text);
                 tfMessage.setText("");
