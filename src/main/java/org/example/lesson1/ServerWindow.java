@@ -85,7 +85,7 @@ public class ServerWindow extends JFrame {
 
     private String readLog() {
         StringBuilder stringBuilder = new StringBuilder();
-        try (FileReader reader = new FileReader(LOG_PATH);) {
+        try (FileReader reader = new FileReader(LOG_PATH)) {
             int c;
             while ((c = reader.read()) != -1) {
                 stringBuilder.append((char) c);
@@ -109,32 +109,26 @@ public class ServerWindow extends JFrame {
 
     //добавление start/stop серверу
     public Component createButtons() {
-        btnStart.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (isServerWorking) {
-                    appendLog(date());
-                    appendLog("Сервер уже был запущен");
-                } else {
-                    isServerWorking = true;
-                    appendLog(date());
-                    appendLog("Сервер запущен!");
-                }
+        btnStart.addActionListener(e -> {
+            if (isServerWorking) {
+                appendLog(date());
+                appendLog("Сервер уже был запущен");
+            } else {
+                isServerWorking = true;
+                appendLog(date());
+                appendLog("Сервер запущен!");
             }
         });
-        btnStop.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (!isServerWorking) {
-                    appendLog(date());
-                    appendLog("Сервер уже был остановлен");
-                } else {
-                    isServerWorking = false;
-                    while (!clientGUIArrayList.isEmpty())
-                        disconnectUser(clientGUIArrayList.getLast());
-                    appendLog(date());
-                    appendLog("Успешная остановка сервера!");
-                }
+        btnStop.addActionListener(e -> {
+            if (!isServerWorking) {
+                appendLog(date());
+                appendLog("Сервер уже был остановлен");
+            } else {
+                isServerWorking = false;
+                while (!clientGUIArrayList.isEmpty())
+                    disconnectUser(clientGUIArrayList.getLast());
+                appendLog(date());
+                appendLog("Успешная остановка сервера!");
             }
         });
 

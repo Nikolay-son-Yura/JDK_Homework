@@ -93,12 +93,7 @@ public class ClientGUI extends JFrame {
     }
 
     private Component createPanelUser() {
-        btnLogin.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                connectToServer();
-            }
-        });
+        btnLogin.addActionListener(e -> connectToServer());
         panelTop.add(tfIPAddress);
         panelTop.add(tfPort);
         panelTop.add(new JPanel());
@@ -124,12 +119,7 @@ public class ClientGUI extends JFrame {
                 }
             }
         });
-        btnSend.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                message();
-            }
-        });
+        btnSend.addActionListener(e -> message());
         panelBottom.add(tfMessage);
         panelBottom.add(btnSend, BorderLayout.EAST);
         return panelBottom;
