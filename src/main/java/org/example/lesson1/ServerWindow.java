@@ -130,9 +130,8 @@ public class ServerWindow extends JFrame {
                     appendLog("Сервер уже был остановлен");
                 } else {
                     isServerWorking = false;
-                    while (!clientGUIArrayList.isEmpty()){
-                        disconnectUser(clientGUIArrayList.get(clientGUIArrayList.size()-1));
-                    }
+                    while (!clientGUIArrayList.isEmpty())
+                        disconnectUser(clientGUIArrayList.getLast());
                     appendLog(date());
                     appendLog("Успешная остановка сервера!");
                 }
